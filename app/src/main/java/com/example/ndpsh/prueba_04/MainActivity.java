@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Si sabemos que el layout de nuestro item no va cambiar o ser mas grande, esto hace que mejore el performance y redimiento de la app
-        mRecyclerView.setHasFixedSize(true);
+        //mRecyclerView.setHasFixedSize(true);
         // Implementa una animacion
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
+        // Lista de nombres
     private  List<String> getAllNames() {
         return new ArrayList<String>() {{
            add("Pepe");
@@ -85,14 +85,16 @@ public class MainActivity extends AppCompatActivity {
            add("Jose");
            add("Fede");
            add("Manuel");
+           add("Dani");
+           add ("Sergio");
         }};
     }
-
+        // Agregar nombre
     private void addName(int position) {
         names.add(position, "New Name" +(++counter));
         mAdapter.notifyItemInserted(position);
         mLayoutManager.scrollToPosition(position);
-    }
+    } // Borrar nombre
     private void deleteName(int position){
         names.remove(position);
         mAdapter.notifyItemRemoved(position);
