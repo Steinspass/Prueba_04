@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<String> names;
+    private List<Movie> movies;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        names = this.getAllNames();
+        movies = this.getAllMovies();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(this);
@@ -39,13 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mAdapter = new Myadapter(names, R.layout.recycler_view_item, new Myadapter.OnItemClickListener() {
+        mAdapter = new Myadapter(movies, R.layout.recycler_view_item, new Myadapter.OnItemClickListener() {
             @Override
-            public void onItemClick(String name, int position) {
-                //Toast.makeText(MainActivity.this, name + "" + " - " + position, Toast.LENGTH_LONG).show();
-                deleteName(position);
+            public void onItemClick(Movie movies, int position) {
+
             }
+            //Toast.makeText(MainActivity.this, name + "" + " - " + position, Toast.LENGTH_LONG).show();
+            //deleteName(position);
         });
+
 
         // Si sabemos que el layout de nuestro item no va cambiar o ser mas grande, esto hace que mejore el performance y redimiento de la app
         //mRecyclerView.setHasFixedSize(true);
@@ -71,32 +73,30 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.add_name:
-                this.addName(0);
+                //this.addName(0);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
         // Lista de nombres
-    private  List<String> getAllNames() {
-        return new ArrayList<String>() {{
-           add("Pepe");
-           add("Alex");
-           add("Jose");
-           add("Fede");
-           add("Manuel");
-           add("Dani");
-           add ("Sergio");
+    private  List<Movie> getAllMovies() {
+        return new ArrayList<Movie>() {{
+           add(new Movie("Django", R.drawable.undjango));
+           add(new Movie("Seven_Samurai", R.drawable.samuraiseven));
+           add(new Movie("Oldboy", R.drawable.oldboy));
+           add(new Movie("The Godfather II", R.drawable.godfatherii));
+           add(new Movie ("Skyfall", R.drawable.skyfall));
         }};
     }
-        // Agregar nombre
-    private void addName(int position) {
-        names.add(position, "New Name" +(++counter));
-        mAdapter.notifyItemInserted(position);
-        mLayoutManager.scrollToPosition(position);
-    } // Borrar nombre
-    private void deleteName(int position){
-        names.remove(position);
-        mAdapter.notifyItemRemoved(position);
+//  Agregar nombre
+//    private void addName(int position) {
+//        movies.add(position, "New Movie" +(++counter));
+//        mAdapter.notifyItemInserted(position);
+//        mLayoutManager.scrollToPosition(position);
+//    } // Borrar nombre
+//    private void deleteName(int position){
+//        movies.remove(position);
+//        mAdapter.notifyItemRemoved(position);
     }
-}
+
