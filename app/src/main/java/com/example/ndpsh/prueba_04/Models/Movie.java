@@ -1,4 +1,4 @@
-package com.example.ndpsh.prueba_04;
+package com.example.ndpsh.prueba_04.Models;
 
 /**
  * Created by Naim on 29/10/18

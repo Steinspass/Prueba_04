@@ -1,4 +1,4 @@
-package com.example.ndpsh.prueba_04;
+package com.example.ndpsh.prueba_04.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.ndpsh.prueba_04.Models.Movie;
+import com.example.ndpsh.prueba_04.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,6 +23,7 @@ public class Myadapter  extends RecyclerView.Adapter<Myadapter.ViewHolder> {
     private List<Movie> movies;
     private int layout;
     private OnItemClickListener itemClickListener;
+
 
 
     public Myadapter(List<Movie> movies, int layout, OnItemClickListener listener) {
@@ -55,11 +60,15 @@ public class Myadapter  extends RecyclerView.Adapter<Myadapter.ViewHolder> {
 
         public ViewHolder (View v) {
             super(v);
+            textViewName = (TextView) itemView.findViewById(R.id.textViewTitle);
+            imageViewPoster = (ImageView) itemView.findViewById(R.id.imageViewPoster);
 
         }
         // Aqui se le dice itemClickListener como funcionar y lo que debe hacer
         public void bind(final Movie movie, final OnItemClickListener listener) {
-
+            textViewName.setText(movie.getName());
+            Picasso.get().load(movie.getPoster()).fit().centerCrop().into(this.imageViewPoster);
+            imageViewPoster.setImageResource(movie.getPoster());
             //this.textViewName.setText(movie);
             // El primer elemento es una vista y en su conjunto tambien es una vista.
             // Itemview es la instancia para la vista y luego tiene un layout en donde le decimos como quiere que se comporte
